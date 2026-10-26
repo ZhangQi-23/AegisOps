@@ -117,26 +117,27 @@ AI-Knowledge-Agent/
 
 ### 2. 安装依赖
 
-在项目根目录打开终端：
+在项目根目录 `AI-Knowledge-Agent/` 打开终端。
 
-```bash
-cd backend
+创建虚拟环境：
+
+```powershell
 python -m venv .venv
 ```
 
-Windows PowerShell 激活虚拟环境：
+激活虚拟环境：
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-安装依赖：
+安装后端依赖：
 
-```bash
-python -m pip install -r requirements.txt
+```powershell
+python -m pip install -r backend/requirements.txt
 ```
 
-如果项目使用的是项目根目录中的虚拟环境，请激活实际对应的虚拟环境后再安装依赖。
+如果已经创建过虚拟环境，无需重复创建，直接激活即可。
 
 ### 3. 配置环境变量
 
@@ -161,6 +162,7 @@ LLM_BASE_URL=你的模型服务地址
 进入 `backend/` 目录后，启动 FastAPI：
 
 ```bash
+cd backend
 uvicorn main:app --reload
 ```
 
