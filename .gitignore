@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment variables
+.env
+*.env
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+.pytest_cache/
+.coverage
+
+# Vector database
+vectorstore/
+faiss_index/
+
+# Uploaded files
+uploads/
+
+
+# Chroma vector database
+chroma_db/
+backend/chroma_db/
+
+# Uploaded documents
+backend/uploads/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
