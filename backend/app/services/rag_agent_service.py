@@ -1,6 +1,7 @@
 from app.services.vector_store_service import search_similar_chunks
-from app.services.langchain_agent_service import run_agent_langchain
-
+from app.services.langchain_agent_service import (
+    run_agent_langchain,
+)
 
 def run_rag_agent(
     question: str,

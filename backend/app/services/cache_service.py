@@ -65,18 +65,25 @@ def delete_knowledge_base_cache(
 ) -> int:
     """
     删除指定知识库的所有 RAG 答案缓存。
-    返回删除的缓存数量。
+    兼容 v1、v2 缓存键，返回删除的缓存数量。
     """
     if knowledge_base_id <= 0:
         raise ValueError("知识库 ID 必须大于 0")
 
-    pattern = f"aegisops:rag:v1:{knowledge_base_id}:*"
-
     deleted_count = 0
 
-    # 使用 scan_iter 避免对 Redis 执行阻塞式的 KEYS *
-    for key in redis_client.scan_iter(match=pattern, count=100):
-        deleted_count += redis_client.delete(key)
+    # 精确匹配版本和知识库 ID，避免误删其他知识库的缓存
+    for version in ("v1", "v2"):
+        pattern = (
+            f"aegisops:rag:{version}:"
+            f"{knowledge_base_id}:*"
+        )
+
+        # 使用 scan_iter，避免阻塞式 KEYS *
+        for key in redis_client.scan_iter(
+            match=pattern,
+            count=100,
+        ):
+            deleted_count += redis_client.delete(key)
 
     return deleted_count
-
